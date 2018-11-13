@@ -1,0 +1,19 @@
+<html>
+
+	{{> header}}
+
+<body>
+	{{#if user.username}}
+    <h1>{{user.username}}</h1>
+  {{else if user.displayName}}
+    <h1>{{user.displayName}}</h1>
+  {{else}}
+    {{> login_form}}
+  {{/if}}
+	
+	{{> menu}}
+</body>
+
+	{{> footer}}
+
+</html>
