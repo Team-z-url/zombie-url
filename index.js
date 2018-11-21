@@ -7,6 +7,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const userAccounts = require('./data/userAccounts');
+const userZombies = require('./data/userZombies');
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
 
@@ -87,23 +88,25 @@ app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 
 app.get('/', (request, response) => {
-	console.log(request.user);
-	response.render('index.hbs', {
-		title: 'Z-url',
-		user: request.user
-	});
+	// console.log(request.user);
+	if (request.user) {
+		let user = request.user;
+		let zombie = userZombies.getZombieByUserId(user.id);
+		response.render('index-user.hbs', {
+			user: user,
+			zombie: zombie
+		});
+	} else {
+		response.render('index-guest.hbs');
+	}
 });
 
 app.get('/about', (request, response) => {
-	response.render('about.hbs', {
-		title: 'About'
-	});
+	response.render('about.hbs');
 });
 
 app.get('/register', (request, response) => {
-	response.render('register.hbs', {
-		title: 'Register'
-	});
+	response.render('register.hbs');
 });
 
 app.post('/register', function(req, res) {
