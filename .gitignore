@@ -2,3 +2,5 @@ node_modules
 dev.js
 accounts.json
 zombies.json
+opponents.json
+*.json
