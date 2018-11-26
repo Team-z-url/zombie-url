@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="./imgs/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="./styles/index.css" />
+    <title>Z-url</title>
+</head>
+
+<body>	
+	
+	<div>
+    <h3>Pick an opponent:</h3>
+    <table style="">
+      <tr>
+        <th>Weak</th>
+        <td>{{opponents.[0].name}}</td> 
+        <th><a href="/battle/result/0">Attack</a></th>
+      </tr>
+      <tr>
+        <th>Medium</th>
+        <td>{{opponents.[1].name}}</td>
+        <th><a href="/battle/result/1">Attack</a></th>
+      </tr>
+      <tr>
+        <th>Strong</th>
+        <td>{{opponents.[2].name}}</td>
+        <th><a href="/battle/result/2">Attack</a></th> 
+      </tr>
+    </table>
+  </div>
+	{{> menu}}
+</body>
+
+	{{> footer}}
+
+</html>

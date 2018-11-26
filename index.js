@@ -8,6 +8,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const userAccounts = require('./data/userAccounts');
 const userZombies = require('./data/userZombies');
+const userOpponents = require('./data/userOpponents');
+const Battle = require('./battle/battle');
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
 
@@ -15,6 +17,12 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 hbs.registerHelper('getCurrentYear', () => {
 	return new Date().getFullYear();
+});
+
+hbs.registerHelper('breaklines', function(text) {
+	text = hbs.Utils.escapeExpression(text);
+	text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+	return new hbs.SafeString(text);
 });
 
 passport.use(
@@ -101,6 +109,41 @@ app.get('/', (request, response) => {
 	}
 });
 
+app.get('/battle', (req, res) => {
+	if (req.user) {
+		let user = req.user;
+		let opponents = userOpponents.getOpponentsByUserId(user.id);
+		// console.log(opponents);
+		res.render('battle.hbs', {
+			opponents: opponents.humans
+		});
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.get('/battle/result/:index', async (req, res) => {
+	if (req.user) {
+		let user = req.user;
+		let zombie = userZombies.getZombieByUserId(user.id);
+		let opponents = userOpponents.getOpponentsByUserId(user.id);
+		let target = opponents.humans[req.params.index];
+		let battle = new Battle();
+		battle.initialize({
+			ally: zombie,
+			foe: target
+		});
+		result = await battle.start();
+		// console.log('result' + result);
+		// console.log(battle);
+		res.render('result.hbs', {
+			result: result.log
+		});
+	} else {
+		res.redirect('/');
+	}
+});
+
 app.get('/about', (request, response) => {
 	response.render('about.hbs');
 });
@@ -127,9 +170,13 @@ app.post('/register', function(req, res) {
 	}
 });
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
-	res.redirect('/');
-});
+app.post(
+	'/login',
+	passport.authenticate('local', { failureRedirect: '/' }),
+	function(req, res) {
+		res.redirect('/');
+	}
+);
 
 app.get(
 	'/auth/google',
