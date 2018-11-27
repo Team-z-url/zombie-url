@@ -10,13 +10,20 @@ const userAccounts = require('./data/userAccounts');
 const userZombies = require('./data/userZombies');
 const userOpponents = require('./data/userOpponents');
 const Battle = require('./battle/battle');
+const bodies = require('./data/bodies');
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
+const rootUrl =
+	process.env.NODE_ENV === 'production' ? null : 'localhost:8080/body/';
 
 hbs.registerPartials(__dirname + '/views/partials');
 
 hbs.registerHelper('getCurrentYear', () => {
 	return new Date().getFullYear();
+});
+
+hbs.registerHelper('urlBody', bodyId => {
+	return rootUrl + bodyId;
 });
 
 hbs.registerHelper('breaklines', function(text) {
@@ -129,6 +136,7 @@ app.get('/battle/result/:index', async (req, res) => {
 		let opponents = userOpponents.getOpponentsByUserId(user.id);
 		let target = opponents.humans[req.params.index];
 		let battle = new Battle();
+		let url = null;
 		battle.initialize({
 			ally: zombie,
 			foe: target
@@ -136,9 +144,23 @@ app.get('/battle/result/:index', async (req, res) => {
 		result = await battle.start();
 		// console.log('result' + result);
 		// console.log(battle);
+		if (result.winner) {
+			url = bodies.generateBody(zombie, target);
+		}
 		res.render('result.hbs', {
-			result: result.log
+			log: result.log,
+			url: url
 		});
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.get('/bodies', (req, res) => {
+	if (req.user) {
+		let user = req.user;
+		let bodyCollection = bodies.getBodyCollectionByUserId(user.id);
+		res.render('bodies.hbs', { bodies: bodyCollection.bodies });
 	} else {
 		res.redirect('/');
 	}
