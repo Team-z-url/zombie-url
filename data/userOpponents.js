@@ -52,6 +52,16 @@ const addOpponentsForUser = userId => {
 	return opponents;
 };
 
+const deleteOpponentsForUser = userId => {
+	let allOpponents = getAllOpponents();
+	for (let i = 0; i < allOpponents.length; i++) {
+		if (allOpponents[i].userId === userId) {
+			allOpponents.splice(i, 1);
+		}
+	}
+	saveJson(filePath, allOpponents);
+};
+
 const getOpponentsByUserId = userId => {
 	let allOpponents = getAllOpponents();
 	for (let i = 0; i < allOpponents.length; i++) {
@@ -83,5 +93,6 @@ const saveJson = (path, object) => {
 module.exports = {
 	getOpponentsByUserId,
 	addOpponentsForUser,
-	getAllOpponents
+	getAllOpponents,
+	deleteOpponentsForUser
 };
