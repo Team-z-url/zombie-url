@@ -146,6 +146,7 @@ app.get('/battle/result/:index', async (req, res) => {
 		// console.log(battle);
 		if (result.winner) {
 			url = bodies.generateBody(zombie, target);
+			userOpponents.deleteOpponentsForUser(req.user.id);
 		}
 		res.render('result.hbs', {
 			log: result.log,
@@ -161,6 +162,37 @@ app.get('/bodies', (req, res) => {
 		let user = req.user;
 		let bodyCollection = bodies.getBodyCollectionByUserId(user.id);
 		res.render('bodies.hbs', { bodies: bodyCollection.bodies });
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.get('/body/:id', (req, res) => {
+	if (req.user) {
+		let bodyFound = bodies.getBodyById(req.params.id);
+		if (bodyFound) {
+			res.render('claimbody.hbs', {
+				body: bodyFound
+			});
+		} else {
+			res.redirect('/');
+		}
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.post('/body', (req, res) => {
+	if (req.user) {
+		// console.log(req.body);
+		let bodyFound = bodies.getBodyById(req.body.bodyId);
+		if (bodyFound) {
+			userZombies.replaceZombieForUserWithBody(req.user.id, bodyFound);
+			bodies.deleteBodyById(bodyFound.id);
+			res.redirect('/');
+		} else {
+			res.redirect('/');
+		}
 	} else {
 		res.redirect('/');
 	}

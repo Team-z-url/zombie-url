@@ -22,7 +22,11 @@ const generateBody = async (zombie, human) => {
 		await addEmptyCollectionForUserId(zombie.userId);
 		collectionIndex = await getBodyCollectionIndexByUserId(zombie.userId);
 	}
+
 	let allBodyCollections = getAllBodyCollections();
+	if (allBodyCollections[collectionIndex].bodies.length >= 5) {
+		allBodyCollections[collectionIndex].bodies.shift();
+	}
 	allBodyCollections[collectionIndex].bodies.push(body);
 	saveJson(filePath, allBodyCollections);
 	return body;
@@ -30,6 +34,18 @@ const generateBody = async (zombie, human) => {
 ///
 
 ///
+
+const deleteBodyById = bodyId => {
+	let allBodyCollections = getAllBodyCollections();
+	for (let i = 0; i < allBodyCollections.length; i++) {
+		for (let ii = 0; ii < allBodyCollections[i].bodies.length; ii++) {
+			if (allBodyCollections[i].bodies[ii].id === bodyId) {
+				allBodyCollections[i].bodies.splice(ii, 1);
+			}
+		}
+	}
+	saveJson(filePath, allBodyCollections);
+};
 
 const getBodyById = id => {
 	let allBodyCollections = getAllBodyCollections();
@@ -96,5 +112,6 @@ module.exports = {
 	getBodyById,
 	getBodyCollectionIndexByUserId,
 	getBodyCollectionByUserId,
-	getAllBodyCollections
+	getAllBodyCollections,
+	deleteBodyById
 };

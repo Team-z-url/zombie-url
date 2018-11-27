@@ -3,6 +3,34 @@ const crypto = require('crypto');
 const generateName = require('sillyname');
 const filePath = './data/zombies.json';
 
+const replaceZombieForUserWithBody = (userId, body) => {
+	let id = crypto.randomBytes(16).toString('hex');
+	let zombie = {
+		id: id,
+		userId: userId,
+		name: body.name,
+		health: body.health,
+		attack: body.attack,
+		defense: body.defense,
+		speed: body.speed,
+		since: body.since
+	};
+	deleteZombieForUser(userId);
+	let allZombies = getAllZombies();
+	allZombies.push(zombie);
+	saveJson(filePath, allZombies);
+};
+
+const deleteZombieForUser = userId => {
+	let allZombies = getAllZombies();
+	for (let i = 0; i < allZombies.length; i++) {
+		if (allZombies[i].userId === userId) {
+			allZombies.splice(i, 1);
+		}
+	}
+	saveJson(filePath, allZombies);
+};
+
 const addZombieForUser = userId => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let date = new Date();
@@ -61,6 +89,7 @@ const saveJson = (path, object) => {
 };
 
 module.exports = {
+	replaceZombieForUserWithBody,
 	getZombieById,
 	addZombieForUser,
 	getZombieByUserId,
