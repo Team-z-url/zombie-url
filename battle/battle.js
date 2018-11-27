@@ -99,7 +99,7 @@ Battle.prototype = {
 		if (this.foe === null) {
 			console.log('!~You won~!');
 			this.result.winner = true;
-			this.result.log += '!~You won~!\n';
+			this.result.log += '!~You won the battle~!\n';
 			this.end = true;
 		}
 	}
