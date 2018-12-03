@@ -14,7 +14,9 @@ const bodies = require('./data/bodies');
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
 const rootUrl =
-	process.env.NODE_ENV === 'production' ? null : 'localhost:8080/body/';
+	process.env.NODE_ENV === 'production'
+		? 'zombie-url/body/'
+		: 'localhost:8080/body/';
 
 hbs.registerPartials(__dirname + '/views/partials');
 
