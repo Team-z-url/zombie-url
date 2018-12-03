@@ -15,7 +15,7 @@ const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
 const rootUrl =
 	process.env.NODE_ENV === 'production'
-		? 'zombie-url/body/'
+		? 'zombie-url.herokuapp.com/body/'
 		: 'localhost:8080/body/';
 
 hbs.registerPartials(__dirname + '/views/partials');
