@@ -1,0 +1,55 @@
+body {
+	background-color: #221F1F;
+	font-family: "Andale Mono", monospace;
+	zoom: 1.5;
+}
+
+p {
+	color: #F5F5F1;
+}
+
+h1 {
+	text-decoration: underline;
+	color: #E50914;
+}
+
+h3 {
+	color: #21AC1D;
+}
+
+#guide_title {
+	text-align: center;
+	display: inline;
+}
+
+#guide_features {
+	text-align: center;
+	width: 85%;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+}
+
+#logo {
+	width:100px;
+}
+
+#menu {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    color: #F7F7F7;
+}
+
+footer {
+	color: #F7F7F7;
+}
+
+a {
+	color: #F7F7F7;
+	text-decoration: none;
+}
