@@ -9,11 +9,11 @@
 </head>
 
 <body>
-  <img id="logo" src="/imgs/test-logo.png"/>
+  <div class="logo"><img id="logo" src="/imgs/test-logo.png"/></div>
 	{{#if user.username}}
-    <h1>{{user.username}}</h1>
+    <h1 class="displayname" >{{user.username}}</h1>
   {{else if user.displayName}}
-    <h1>{{user.displayName}}</h1>
+    <h1 class="displayname" >{{user.displayName}}</h1>
   {{/if}}
 	<div id="table">
     <h3>Your zombie:</h3>

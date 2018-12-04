@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="/./imgs/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/./styles/index.css" />
     <link rel="stylesheet" type="text/css" href="/./styles/menu.css" />
     <link rel="stylesheet" type="text/css" href="/./styles/body.css" />
     <title>Z-url</title>
@@ -12,35 +13,37 @@
 	<div class="logo"><img id="logo" src="/imgs/test-logo.png"/></div>
 	<h1>Your Bodies</h1>
 		{{#if bodies}}
-	    {{#each bodies}}
-	    	<br />
-		    <table style="">
-		      <tr>
-		        <th>Name</th>
-		        <td>{{this.name}}</td> 
-		      </tr>
-		      <tr>
-		        <th>Health</th>
-		        <td>{{this.health}}</td>
-		      </tr>
-		      <tr>
-		        <th>Attack</th>
-		        <td>{{this.attack}}</td>
-		      </tr>
-		      <tr>
-		        <th>Defense</th>
-		        <td>{{this.defense}}</td>
-		      </tr>
-		      <tr>
-		        <th>Speed</th>
-		        <td>{{this.speed}}</td>
-		      </tr>
-		      <tr>
-		        <th>Url</th>
-		        <td>{{urlBody this.id}}</td>
-		      </tr>
-		    </table>
-		  {{/each}}
+			<div id="body-box">
+		    {{#each bodies}}
+		    	<br />
+			    <table style="">
+			      <tr>
+			        <th>Name</th>
+			        <td>{{this.name}}</td> 
+			      </tr>
+			      <tr>
+			        <th>Health</th>
+			        <td>{{this.health}}</td>
+			      </tr>
+			      <tr>
+			        <th>Attack</th>
+			        <td>{{this.attack}}</td>
+			      </tr>
+			      <tr>
+			        <th>Defense</th>
+			        <td>{{this.defense}}</td>
+			      </tr>
+			      <tr>
+			        <th>Speed</th>
+			        <td>{{this.speed}}</td>
+			      </tr>
+			      <tr>
+			        <th>Url</th>
+			        <td>{{urlBody this.id}}</td>
+			      </tr>
+			    </table>
+			  {{/each}}
+			</div>
 	  {{else}}
 	    <h1>You don't own any bodies yet</h1>
 	  {{/if}}
