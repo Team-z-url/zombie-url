@@ -3,6 +3,8 @@ A zombie game
 
 You control a zombie, you kill a human, you get a url, you share it with your friends so they can play, too. 
 
+https://zombie-url.herokuapp.com/
+
 ## Generating a Zombie
 Before you can enjoy the game, you need to becom... er... create a zombie! To do this you need to register one of two ways: either create an account manually by clicking on Register and filling in the required fields. Or, you can login with Google. After doing one of the two methods, you'll have your zombie!
 		<br/>
