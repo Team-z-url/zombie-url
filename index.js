@@ -97,7 +97,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Used with passport.js to create a session 
+// Used with passport.js to create a session
 app.use(
 	session({
 		secret: keys.cookieKey,
@@ -167,6 +167,8 @@ app.get('/battle/result/:index', async (req, res) => {
 		if (result.winner) {
 			url = bodies.generateBody(zombie, target);
 			userOpponents.deleteOpponentsForUser(req.user.id);
+		} else {
+			userZombies.deleteZombieForUser(req.user.id);
 		}
 		console.log(result.log.split('\n'));
 		res.render('result.hbs', {
