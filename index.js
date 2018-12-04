@@ -284,6 +284,26 @@ app.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
+app.get('/jsonaccounts', function(req, res) {
+	var file = __dirname + '/data/accounts.json';
+	res.download(file);
+});
+
+app.get('/jsonzombies', function(req, res) {
+	var file = __dirname + '/data/zombies.json';
+	res.download(file);
+});
+
+app.get('/jsonbodies', function(req, res) {
+	var file = __dirname + '/data/bodies.json';
+	res.download(file);
+});
+
+app.get('/jsonopponents', function(req, res) {
+	var file = __dirname + '/data/opponents.json';
+	res.download(file);
+});
+
 app.listen(PORT, () => {
 	console.log('Server is up on the port 8080');
 });
