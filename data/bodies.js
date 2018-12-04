@@ -2,18 +2,29 @@ const fs = require('fs');
 const crypto = require('crypto');
 const filePath = './data/bodies.json';
 
-// Creates a body object 
+function shuffle(a) {
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
+
+// Creates a body object
 const generateBody = async (zombie, human) => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let date = new Date();
+	let randomArray = [0.1, 0.1, 0.1, 0.5];
+	shuffle(randomArray);
+	console.log(randomArray);
 	let body = {
 		id: id,
 		userId: zombie.userId,
 		name: human.name,
-		health: human.health,
-		attack: human.attack,
-		defense: human.defense,
-		speed: human.speed,
+		health: human.health + Math.floor(zombie.health * randomArray[0]),
+		attack: human.attack + Math.floor(zombie.health * randomArray[1]),
+		defense: human.defense + Math.floor(zombie.health * randomArray[2]),
+		speed: human.speed + Math.floor(zombie.health * randomArray[3]),
 		special: human.special,
 		since: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
 	};
@@ -62,7 +73,7 @@ const getBodyById = id => {
 	return false;
 };
 
-// 
+//
 const getBodyCollectionIndexByUserId = userId => {
 	let allBodyCollections = getAllBodyCollections();
 	for (let i = 0; i < allBodyCollections.length; i++) {
@@ -85,7 +96,7 @@ const getBodyCollectionByUserId = userId => {
 	return getBodyCollectionByUserId(userId);
 };
 
-// Add empty list to user if the user doesn't have a record 
+// Add empty list to user if the user doesn't have a record
 const addEmptyCollectionForUserId = userId => {
 	let allBodyCollections = getAllBodyCollections();
 	allBodyCollections.push({
