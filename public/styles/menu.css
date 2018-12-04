@@ -1,9 +1,11 @@
 #menu {
-	position: absolute;
+	position: relative;
+	top: 20px;
 	bottom: 20px;
 	left: 0px;
 	right: 0px;
 	margin: auto;
 	width: 60%;
+	padding: 5px;
 	text-align: center;
 }

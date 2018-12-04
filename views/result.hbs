@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="/./imgs/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/./styles/index.css" />
     <link rel="stylesheet" type="text/css" href="/./styles/menu.css" />
     <link rel="stylesheet" type="text/css" href="/./styles/result.css" />
     <title>Z-url</title>
@@ -11,9 +12,11 @@
 <body>
 	<div class="logo"><img id="logo" src="/imgs/test-logo.png"/></div>
 	<h1>Battle Result</h1>
-	{{#each log}}
-		<p>{{this}}</p>
-	{{/each}}
+	<div id="result-box">
+		{{#each log}}
+			<p>{{this}}</p>
+		{{/each}}
+	</div>
 	<h3>
 		{{#if winner}}
 			You win!
