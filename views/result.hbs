@@ -8,7 +8,16 @@
 
 <body>
 	<h1>Battle Result</h1>
-	<p>{{breaklines log}}</p>
+	{{#each log}}
+		<p>{{this}}</p>
+	{{/each}}
+	<h3>
+		{{#if winner}}
+			You win!
+		{{else}}
+			You lose!
+		{{/if}}
+	</h3>
 	{{> menu}}
 </body>
 

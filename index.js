@@ -28,11 +28,11 @@ hbs.registerHelper('urlBody', bodyId => {
 	return rootUrl + bodyId;
 });
 
-hbs.registerHelper('breaklines', function(text) {
-	text = hbs.Utils.escapeExpression(text);
-	text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
-	return new hbs.SafeString(text);
-});
+// hbs.registerHelper('breaklines', function(text) {
+// 	text = hbs.Utils.escapeExpression(text);
+// 	text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+// 	return new hbs.SafeString(text);
+// });
 
 passport.use(
 	'local',
@@ -150,8 +150,10 @@ app.get('/battle/result/:index', async (req, res) => {
 			url = bodies.generateBody(zombie, target);
 			userOpponents.deleteOpponentsForUser(req.user.id);
 		}
+		console.log(result.log.split('\n'));
 		res.render('result.hbs', {
-			log: result.log,
+			log: result.log.split('\n').slice(0, -2),
+			winner: result.winner,
 			url: url
 		});
 	} else {
