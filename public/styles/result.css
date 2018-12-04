@@ -1,0 +1,38 @@
+body {
+	background-color: #221F1F;
+	font-family: "Andale Mono", monospace;
+	zoom:1.5 ;
+}
+.logo {
+	text-align: center;
+}
+#logo {
+	width:180px;
+	padding-bottom: 5%;
+}
+h1 {
+	text-align: center;
+	color: #E50914;
+	font-size: 40px;
+	margin: 10px;
+}
+h3 {
+	color: #F5F5F1;
+	text-align: center;
+}
+p {
+	color: #F7F7F7;
+}
+footer {
+	position: absolute;
+	bottom: 0px;
+	font-size: 10px;
+}
+a {
+	color: #F7F7F7;
+	text-decoration: none;
+}
+/* This is to change color of p alternatively (every odd number) */
+p:nth-child(odd) {
+	background-color: #21AC1D;
+}

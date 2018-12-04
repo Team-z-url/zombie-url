@@ -1,12 +1,11 @@
 <form action="/register" method="post">
-	<div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-    <label for="password2"><b>Password Again</b></label>
-    <input type="password" placeholder="Enter Password Again" name="password2" required>
-
-    <button type="submit">Register</button>
-  </div>
+	<div class="window">
+		<img id="logo" src="/imgs/test-logo.png"/>
+		<div class="container">
+		    <div class="space" ><input id="username" type="text" placeholder="Username" name="username" required></div>
+		    <div class="space"><input id="password" type="password" placeholder="Password" name="password" required></div>
+		    <div class="space"><input id="re-password" type="password" placeholder="Confirm Password" name="password2" required></div>
+		    <button id="register" type="submit">Register</button>
+	  	</div>
+  	</div>
 </form>

@@ -1,0 +1,57 @@
+body {
+	background-color: #221F1F;
+	font-family: "Andale Mono", monospace;
+	zoom:1.5 ;
+}
+a {
+	color: #F7F7F7;
+	text-decoration: none;
+}
+p {
+	color: #F7F7F7;
+}
+.window {
+	position:absolute;
+    width: 40%;
+    height: 90%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    text-align: center;
+}
+#logo {
+	width:180px;
+	padding-bottom: 13%;
+}
+#username {
+	width: 241px;
+	height: 34px;
+}
+#password {
+	width: 241px;
+	height: 34px;
+}
+#re-password {
+	width: 241px;
+	height: 34px;
+}
+.space {
+	padding-bottom: 2%;
+}
+#register {
+	width: 241px;
+	height: 35px;
+	background-color: #21AC1D;
+	border: 0.5px solid #000000;
+    box-shadow: 0 0 5px -1px #000000;
+    color: #FFFF;
+    font-family: "Andale Mono", monospace;
+    border-radius: 5px;
+    margin:1%;
+    cursor: pointer;
+}
+#register:hover {
+	background-color: green;
+}

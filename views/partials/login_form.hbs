@@ -1,10 +1,25 @@
 <form action="/login" method="post">
+<div class="window">
+	<img id="logo" src="/imgs/test-logo.png"/>
 	<div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-    <button type="submit">Login</button>
-  </div>
+		<div class="username">
+		    <input id="username" type="text" placeholder="Username" name="username" required>
+		</div>
+		<div class="password">
+		    <input id="password" type="password" placeholder="Password" name="password" required>
+		</div>    
+	    <button id="login" type="submit">Login</button>
+	</div>
 </form>
-<a href="/auth/google"><button>Login With Google</button></a>
+	<div class="or">
+		<h3><span>or</span></h3>
+	</div>
+	<div></div>
+	<a href="/auth/google">
+		<div class="google-btn">
+			<img id="google-logo" src='./imgs/google-logo.png'></img>
+			<p id="login-google">Login With Google</p>
+		</div>
+
+	</a>
+</div>

@@ -3,31 +3,35 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="./imgs/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="./styles/index.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/battle.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/menu.css" />
     <title>Z-url</title>
 </head>
 
 <body>	
 	
 	<div>
+    <div class="logo"><img id="logo" src="/imgs/test-logo.png"/></div>
     <h3>Pick an opponent:</h3>
-    <table style="">
-      <tr>
+    <div class="table">
+    <table>
+      <tr id='weak'>
         <th>Weak</th>
         <td>{{opponents.[0].name}}</td> 
         <th><a href="/battle/result/0">Attack</a></th>
       </tr>
-      <tr>
+      <tr id='medium'>
         <th>Medium</th>
         <td>{{opponents.[1].name}}</td>
         <th><a href="/battle/result/1">Attack</a></th>
       </tr>
-      <tr>
+      <tr id='strong'>
         <th>Strong</th>
         <td>{{opponents.[2].name}}</td>
         <th><a href="/battle/result/2">Attack</a></th> 
       </tr>
     </table>
+  </div>
   </div>
 	{{> menu}}
 </body>
