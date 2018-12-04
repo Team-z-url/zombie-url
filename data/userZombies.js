@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const generateName = require('sillyname');
 const filePath = './data/zombies.json';
 
+// Replaces the user zombie with a URL zombie 
 const replaceZombieForUserWithBody = (userId, body) => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let zombie = {
@@ -21,6 +22,7 @@ const replaceZombieForUserWithBody = (userId, body) => {
 	saveJson(filePath, allZombies);
 };
 
+// deletes the user's zombie
 const deleteZombieForUser = userId => {
 	let allZombies = getAllZombies();
 	for (let i = 0; i < allZombies.length; i++) {

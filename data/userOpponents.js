@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const faker = require('faker');
 const filePath = './data/opponents.json';
 
+// Adds caplitalization to the first letter of a name
 function titleCase(str) {
 	var splitStr = str.toLowerCase().split(' ');
 	for (var i = 0; i < splitStr.length; i++) {
@@ -14,6 +15,7 @@ function titleCase(str) {
 	// Directly return the joined string
 	return splitStr.join(' ');
 }
+
 
 const addOpponentsForUser = userId => {
 	let id = crypto.randomBytes(16).toString('hex');
@@ -52,6 +54,7 @@ const addOpponentsForUser = userId => {
 	return opponents;
 };
 
+// After a victory, deletes all opponents
 const deleteOpponentsForUser = userId => {
 	let allOpponents = getAllOpponents();
 	for (let i = 0; i < allOpponents.length; i++) {

@@ -1,3 +1,4 @@
+// Packages
 const express = require('express');
 const hbs = require('hbs');
 const morgan = require('morgan');
@@ -14,16 +15,20 @@ const bodies = require('./data/bodies');
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 8080;
 const rootUrl =
+	// Node environment variable that allows heroku to host the website without us needing to change anything
 	process.env.NODE_ENV === 'production'
 		? 'zombie-url.herokuapp.com/body/'
 		: 'localhost:8080/body/';
 
+// Telling the handlebars where the partial.hbs files are located
 hbs.registerPartials(__dirname + '/views/partials');
 
+// Helper that returns the current year
 hbs.registerHelper('getCurrentYear', () => {
 	return new Date().getFullYear();
 });
 
+// Helper that combines Url with bodyID
 hbs.registerHelper('urlBody', bodyId => {
 	return rootUrl + bodyId;
 });
@@ -34,6 +39,7 @@ hbs.registerHelper('urlBody', bodyId => {
 // 	return new hbs.SafeString(text);
 // });
 
+// User and Password authorization
 passport.use(
 	'local',
 	new LocalStrategy(
@@ -51,6 +57,7 @@ passport.use(
 	)
 );
 
+// Authentication for Google login
 passport.use(
 	'google',
 	new GoogleStrategy(
@@ -73,10 +80,12 @@ passport.use(
 	)
 );
 
+// Turns the user object into a string
 passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
 
+// Turns a string into a user object
 passport.deserializeUser((id, done) => {
 	foundUser = userAccounts.getUserById(id);
 	done(null, foundUser);
@@ -84,9 +93,11 @@ passport.deserializeUser((id, done) => {
 
 var app = express();
 
+// Enabling access to the req.body object
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Used with passport.js to create a session 
 app.use(
 	session({
 		secret: keys.cookieKey,
@@ -95,15 +106,20 @@ app.use(
 	})
 );
 
+// Passport initialization and session creation
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Tells express to use handlebars to render html pages
 app.set('view engine', 'hbs');
 
+// Tells express where the public assets are
 app.use(express.static(__dirname + '/public'));
 
+// Logs out HTTP requests to backend
 app.use(morgan('dev'));
 
+// Home index handle-er
 app.get('/', (request, response) => {
 	// console.log(request.user);
 	if (request.user) {
@@ -118,6 +134,7 @@ app.get('/', (request, response) => {
 	}
 });
 
+// Battle page handle-er
 app.get('/battle', (req, res) => {
 	if (req.user) {
 		let user = req.user;
@@ -131,6 +148,7 @@ app.get('/battle', (req, res) => {
 	}
 });
 
+// results page handle-er. Also starts a battle object and returns battle results
 app.get('/battle/result/:index', async (req, res) => {
 	if (req.user) {
 		let user = req.user;
@@ -161,6 +179,7 @@ app.get('/battle/result/:index', async (req, res) => {
 	}
 });
 
+// bodies page handle-er
 app.get('/bodies', (req, res) => {
 	if (req.user) {
 		let user = req.user;
@@ -171,6 +190,7 @@ app.get('/bodies', (req, res) => {
 	}
 });
 
+// claimbody page handle-er
 app.get('/body/:id', (req, res) => {
 	if (req.user) {
 		let bodyFound = bodies.getBodyById(req.params.id);
@@ -186,6 +206,7 @@ app.get('/body/:id', (req, res) => {
 	}
 });
 
+// claim body logic handle-er
 app.post('/body', (req, res) => {
 	if (req.user) {
 		// console.log(req.body);
@@ -210,6 +231,7 @@ app.get('/register', (request, response) => {
 	response.render('register.hbs');
 });
 
+// How the register page works
 app.post('/register', function(req, res) {
 	var password = req.body.password;
 	var password2 = req.body.password2;
@@ -228,6 +250,7 @@ app.post('/register', function(req, res) {
 	}
 });
 
+// Login handle-er
 app.post(
 	'/login',
 	passport.authenticate('local', { failureRedirect: '/' }),
@@ -236,6 +259,7 @@ app.post(
 	}
 );
 
+// Google login handle-er
 app.get(
 	'/auth/google',
 	passport.authenticate('google', {
@@ -243,6 +267,7 @@ app.get(
 	})
 );
 
+// Google login callback handle-er
 app.get(
 	'/auth/google/callback',
 	passport.authenticate('google'),
@@ -251,6 +276,7 @@ app.get(
 	}
 );
 
+// logout handle-er
 app.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/');

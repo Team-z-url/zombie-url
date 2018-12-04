@@ -1,6 +1,7 @@
 const Unit = require('./unit');
 const Attack = require('./actions/attack');
 
+// Definition of the battle class
 const Battle = function() {
 	this.end = false;
 	this.startedTime = null;
@@ -27,6 +28,7 @@ Battle.prototype = {
 		this.foe = new Unit(data);
 	},
 	pushAttack: function(unit, target) {
+		// Pushing and attack object
 		action = {
 			type: 'attack',
 			perform: Attack,
@@ -37,6 +39,7 @@ Battle.prototype = {
 		this.actionQueue.push(action);
 	},
 	turnStart: function() {
+		// Decides who goes first in a battle
 		this.pushAttack(this.ally, this.foe);
 		this.pushAttack(this.foe, this.ally);
 		this.actionQueue.sort((a, b) => {
@@ -44,6 +47,7 @@ Battle.prototype = {
 		});
 	},
 	start: function() {
+		// Every milisecond it updates the battle and returns battle results when finished
 		return new Promise((resolve, reject) => {
 			this.startedTime = this.lastUpdateTime = new Date().getTime();
 			let scope = this;
