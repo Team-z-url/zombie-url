@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const filePath = './data/accounts.json';
 
+// Creates a local user object
 const addLocalUser = (username, password) => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let hash = bcrypt.hashSync(password, 10);
@@ -22,6 +23,7 @@ const addLocalUser = (username, password) => {
 	}
 };
 
+// Creates a Google user object
 const addGoogleUser = (googleId, displayName) => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let userObj = {

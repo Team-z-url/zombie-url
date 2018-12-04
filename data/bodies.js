@@ -2,6 +2,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const filePath = './data/bodies.json';
 
+// Creates a body object 
 const generateBody = async (zombie, human) => {
 	let id = crypto.randomBytes(16).toString('hex');
 	let date = new Date();
@@ -35,6 +36,7 @@ const generateBody = async (zombie, human) => {
 
 ///
 
+// Deletes a body when claimed
 const deleteBodyById = bodyId => {
 	let allBodyCollections = getAllBodyCollections();
 	for (let i = 0; i < allBodyCollections.length; i++) {
@@ -47,6 +49,7 @@ const deleteBodyById = bodyId => {
 	saveJson(filePath, allBodyCollections);
 };
 
+// Body object getter
 const getBodyById = id => {
 	let allBodyCollections = getAllBodyCollections();
 	for (let i = 0; i < allBodyCollections.length; i++) {
@@ -59,6 +62,7 @@ const getBodyById = id => {
 	return false;
 };
 
+// 
 const getBodyCollectionIndexByUserId = userId => {
 	let allBodyCollections = getAllBodyCollections();
 	for (let i = 0; i < allBodyCollections.length; i++) {
@@ -69,6 +73,7 @@ const getBodyCollectionIndexByUserId = userId => {
 	return false;
 };
 
+// Returns the body information after clicking on the Bodies link
 const getBodyCollectionByUserId = userId => {
 	let allBodyCollections = getAllBodyCollections();
 	for (let i = 0; i < allBodyCollections.length; i++) {
@@ -80,6 +85,7 @@ const getBodyCollectionByUserId = userId => {
 	return getBodyCollectionByUserId(userId);
 };
 
+// Add empty list to user if the user doesn't have a record 
 const addEmptyCollectionForUserId = userId => {
 	let allBodyCollections = getAllBodyCollections();
 	allBodyCollections.push({
@@ -89,10 +95,12 @@ const addEmptyCollectionForUserId = userId => {
 	saveJson(filePath, allBodyCollections);
 };
 
+// Getter for all the bodies
 const getAllBodyCollections = () => {
 	return readJson(filePath);
 };
 
+// Reads the Json file
 const readJson = path => {
 	if (fs.existsSync(path)) {
 		resultString = fs.readFileSync(path);
@@ -103,6 +111,7 @@ const readJson = path => {
 	}
 };
 
+// Saves the Json file
 const saveJson = (path, object) => {
 	fs.writeFileSync(path, JSON.stringify(object));
 };
