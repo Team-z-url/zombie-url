@@ -51,10 +51,12 @@ table {
 #logo {
 	width: 180px;
 }
+
 footer {
 	position: relative;
 	top: 5px;
 	bottom: 0px;
+	text-align: left;
 	color: #f7f7f7;
 	font-size: 10px;
 }
