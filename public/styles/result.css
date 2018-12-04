@@ -28,4 +28,7 @@ p:nth-child(odd) {
 	background-color: #21ac1d;
 }
 
-
+#result-box {
+	display: inline-block;
+	width: 60%;
+}

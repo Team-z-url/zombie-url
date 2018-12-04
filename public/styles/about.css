@@ -1,20 +1,18 @@
 body {
-	background-color: #221F1F;
-	font-family: "Andale Mono", monospace;
-	zoom: 1.5;
+	text-align: left;
 }
 
 p {
-	color: #F5F5F1;
+	color: #f5f5f1;
 }
 
 h1 {
 	text-decoration: underline;
-	color: #E50914;
+	color: #e50914;
 }
 
 h3 {
-	color: #21AC1D;
+	color: #21ac1d;
 }
 
 #guide_title {
@@ -31,25 +29,25 @@ h3 {
 }
 
 #logo {
-	width:100px;
+	width: 100px;
 }
 
 #menu {
-    position: relative;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    width: 60%;
-    text-align: center;
-    color: #F7F7F7;
+	position: relative;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	width: 60%;
+	text-align: center;
+	color: #f7f7f7;
 }
 
 footer {
-	color: #F7F7F7;
+	color: #f7f7f7;
 }
 
 a {
-	color: #F7F7F7;
+	color: #f7f7f7;
 	text-decoration: none;
 }
