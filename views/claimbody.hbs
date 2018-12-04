@@ -2,49 +2,52 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="./imgs/favicon.png" />
+    <link rel="icon" type="image/png" href="/./imgs/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/./styles/menu.css" />
+    <link rel="stylesheet" type="text/css" href="/./styles/claimbody.css" />
     <title>Z-url</title>
 </head>
 
 <body>
+  <div class="logo"><img id="logo" src="/imgs/test-logo.png"/></div>
 	<h1>Your Bodies</h1>
-		
-	    
 	<br />
-  <table style="">
-    <tr>
-      <th>Name</th>
-      <td>{{body.name}}</td> 
-    </tr>
-    <tr>
-      <th>Health</th>
-      <td>{{body.health}}</td>
-    </tr>
-    <tr>
-      <th>Attack</th>
-      <td>{{body.attack}}</td>
-    </tr>
-    <tr>
-      <th>Defense</th>
-      <td>{{body.defense}}</td>
-    </tr>
-    <tr>
-      <th>Speed</th>
-      <td>{{body.speed}}</td>
-    </tr>
-    <tr>
-      <th>Special</th>
-      <td>{{body.special}}</td>
-    </tr>
-    <tr>
-      <th>Url</th>
-      <td>{{urlBody body.id}}</td>
-    </tr>
-  </table>
+  <div class="table">
+    <table>
+      <tr>
+        <th>Name</th>
+        <td>{{body.name}}</td> 
+      </tr>
+      <tr>
+        <th>Health</th>
+        <td>{{body.health}}</td>
+      </tr>
+      <tr>
+        <th>Attack</th>
+        <td>{{body.attack}}</td>
+      </tr>
+      <tr>
+        <th>Defense</th>
+        <td>{{body.defense}}</td>
+      </tr>
+      <tr>
+        <th>Speed</th>
+        <td>{{body.speed}}</td>
+      </tr>
+      <tr>
+        <th>Special</th>
+        <td>{{body.special}}</td>
+      </tr>
+      <tr>
+        <th>Url</th>
+        <td>{{urlBody body.id}}</td>
+      </tr>
+    </table>
+  </div>
 	<h3 >Replace your zombie with this body?</h3>
 	<form action="/body" method="post">
 	    <input type="hidden" name="bodyId" value="{{body.id}}">
-	    <button type="submit">Confirm</button>
+	    <button id="confirm" type="submit">Confirm</button>
 	</form>
 	{{> menu}}
 </body>

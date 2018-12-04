@@ -4,18 +4,20 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="./imgs/favicon.png" />
     <link rel="stylesheet" type="text/css" href="./styles/index.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/menu.css" />
     <title>Z-url</title>
 </head>
 
 <body>
+  <img id="logo" src="/imgs/test-logo.png"/>
 	{{#if user.username}}
     <h1>{{user.username}}</h1>
   {{else if user.displayName}}
     <h1>{{user.displayName}}</h1>
   {{/if}}
-	<div>
+	<div id="table">
     <h3>Your zombie:</h3>
-    <table style="">
+    <table>
       <tr>
         <th>Name</th>
         <td>{{zombie.name}}</td> 

@@ -9,16 +9,10 @@ td {
 }
 
 th {
-	text-align: left;
+	text-align: center;
 	color: #F5F5F1;
 	width:20%;
 	height: 34px;
-}
-h1 {
-	text-align: center;
-	color: #E50914;
-	font-size: 100px;
-	margin: 0px;
 }
 h3 {
 	color: #F7F7F7;
@@ -28,28 +22,31 @@ a {
 	color: #F7F7F7;
 	text-decoration: none;
 }
-/*tr:nth-child(even) {
-    background-color: green;
+.logo {
+	text-align: center;
 }
-*/
-tr:nth-child(odd) {
-	background-color: #21AC1D;
+#logo {
+	width:180px;
+	padding-bottom: 5%;
 }
-
-
-#table {
+.table {
 	text-align: center;
 }
 table {
 	display: inline-block;
-}
-
-#logo {
-	width:100px;
 }
 footer{
 	position: absolute;
 	bottom:0px;
 	color:#F7F7F7;
 	font-size: 10px;
+}
+#weak {
+	background-color:#21AC1D;
+}
+#strong {
+	background-color:#E50914;
+}
+#medium {
+	background-color: #e5091454;
 }
